@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`works 1`] = `
+[
+  "a",
+  "a/g.textb",
+  "a/g.texta",
+  "a/b",
+  "a/b/c",
+  "a/b/c/d",
+  "a/b/c/d/e.textb",
+  "a/b/c/d/e.texta",
+]
+`;
