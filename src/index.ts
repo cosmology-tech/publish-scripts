@@ -4,22 +4,21 @@ import { rimrafSync as rimraf } from 'rimraf';
 import { join, dirname, format, parse } from 'path';
 import { copyFileSync } from 'fs';
 
-export const prepare = ({
+export const rename = ({
     findExt = 'js',
     replaceExt = 'mjs',
-    clear = false,
-    out = join(process.cwd(), '__output__'),
-    cwd = process.cwd()
+    rmDir = false,
+    outDir = join(process.cwd(), '__output__'),
+    srcDir = process.cwd()
 }) => {
-    if (clear) rimraf(out);
-    mkdirp(out);
-    const files = glob('**/*.' + findExt, { ignore: 'node_modules/**', cwd });
+    if (rmDir) rimraf(outDir);
+    mkdirp(outDir);
+    const files = glob('**/*.' + findExt, { ignore: 'node_modules/**', cwd: srcDir });
     files.forEach(file => {
         const src = file;
         const dst = format({ ...parse(src), base: '', ext: '.' + replaceExt });
-        const outDst = join(out, dst);
+        const outDst = join(outDir, dst);
         mkdirp(dirname(outDst));
-        copyFileSync(join(cwd, src), join(out, dst));
+        copyFileSync(join(srcDir, src), join(outDir, dst));
     })
 }
-
