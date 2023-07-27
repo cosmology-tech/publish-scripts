@@ -26,6 +26,12 @@ const questions = [
         message: 'outDir',
         type: 'input',
         required: true,
+    },
+    {
+        name: 'removeEmpty',
+        message: 'remove empty directories?',
+        type: 'confirm',
+        required: true,
     }
 ];
 export default async (argv) => {
@@ -33,7 +39,8 @@ export default async (argv) => {
         findExt,
         srcDir,
         stripPath,
-        outDir
+        outDir,
+        removeEmpty
     } = await prompt(questions, argv);
 
     const cwd = process.cwd();
@@ -48,7 +55,8 @@ export default async (argv) => {
         findExt,
         outDir,
         srcDir,
-        stripPath
+        stripPath,
+        removeEmpty
     })
 
 };

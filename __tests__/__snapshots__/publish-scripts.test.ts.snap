@@ -1,5 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`clean 1`] = `
+[
+  "some",
+  "g.ty",
+  "g.tx",
+  "g.textb",
+  "some/path",
+  "some/path/g.ty",
+  "some/path/g.tx",
+  "some/path/g.textb",
+  "some/path/g.texta",
+  "some/path/b",
+  "some/path/a",
+  "some/path/b/c",
+  "some/path/b/c/d",
+  "some/path/b/c/d/e.textb",
+  "some/path/b/c/d/e.texta",
+  "some/path/a/d",
+  "some/path/a/d/e.textb",
+  "some/path/a/d/e.texta",
+]
+`;
+
+exports[`clean 2`] = `[]`;
+
 exports[`copy 1`] = `
 [
   "some",
@@ -56,6 +81,14 @@ exports[`copy stripPath bad 1`] = `
   "some/path/a/d/e.textb",
   "some/path/a/d/e.texta",
 ]
+`;
+
+exports[`ignore 1`] = `
+"/some
+/g.textb
+/g.tx
+/g.ty
+"
 `;
 
 exports[`rename 1`] = `
