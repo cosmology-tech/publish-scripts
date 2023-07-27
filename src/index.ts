@@ -83,3 +83,34 @@ export const clean = ({
         rimrafSync(join(outDir, src));
     })
 };
+
+interface IgnoreFn {
+    findExt: string | string[];
+    outDir: string;
+    srcDir: string;
+    stripPath: string;
+}
+
+// deletes the files that would have otherwise been copied
+export const ignore = ({
+    findExt = [],
+    outDir = join(process.cwd(), '__output__'),
+    srcDir = process.cwd(),
+    stripPath = ''
+}: IgnoreFn) => {
+    const regexp = new RegExp('^' + stripPath);
+
+    if (typeof findExt === 'string') findExt = findExt.split(',').map(a => a.trim()).filter(Boolean)
+    const files = findExt.reduce((m, v) => {
+        return [...m, ...glob('**/*.' + v, { ignore: 'node_modules/**', cwd: srcDir })];
+    }, []);
+
+    files.forEach(file => {
+        let src = file;
+        if (regexp.test(file)) {
+            src = file.replace(regexp, '');
+        }
+        const outDst = join(outDir, src);
+        console.log(src);
+    })
+};
