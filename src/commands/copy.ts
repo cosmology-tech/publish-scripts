@@ -29,6 +29,19 @@ const questions = [
     }
 ];
 export default async (argv) => {
+
+    if (argv.ignore) {
+        if (!argv.findExt) {
+            argv.findExt = 'js,map,mjs,d.ts';
+        }
+        if (!argv.outDir) {
+            argv.outDir = '.';
+        }
+        if (!argv.srcDir) {
+            argv.srcDir = 'dist';
+        }
+    }
+
     let {
         findExt,
         srcDir,

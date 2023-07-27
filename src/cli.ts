@@ -12,6 +12,11 @@ const question = [
 ];
 
 export const cli = async (argv) => {
+    if (argv.clean) argv.cmd = 'clean';
+    if (argv.rename) argv.cmd = 'rename';
+    if (argv.copy) argv.cmd = 'copy';
+    if (argv.ignore) argv.cmd = 'ignore';
+
     var { cmd } = await prompt(question, argv);
     if (typeof commands[cmd] === 'function') {
         await commands[cmd](argv);

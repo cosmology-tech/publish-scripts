@@ -22,7 +22,20 @@ yarn add --dev publish-scripts
 
 Now, update your `package.json`'s `scripts` property:
 
+
+```json
+"build:cjs": "yarn tsc -p tsconfig.json --outDir dist --module commonjs",
+"build:mjs": "yarn tsc -p tsconfig.json --outDir mjs --module es2022 --declaration false",
+"build:rename": "publish-scripts --rename",
+"build:copy": "publish-scripts --copy",
+"build:clean": "publish-scripts --clean",
+"build:ignore": "publish-scripts --ignore",
+"build": "rimraf dist && yarn build:cjs && yarn build:mjs && yarn build:rename && rimraf mjs && yarn build:copy && yarn build:ignore",
 ```
+
+If you want to provide all the arguments manually:
+
+```json
 "build:cjs": "yarn tsc -p tsconfig.json --outDir dist --module commonjs",
 "build:mjs": "yarn tsc -p tsconfig.json --outDir mjs --module es2022 --declaration false",
 "build:rename": "publish-scripts --cmd rename --srcDir mjs --outDir dist --findExt js --replaceExt mjs",
