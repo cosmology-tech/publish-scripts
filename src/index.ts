@@ -9,7 +9,7 @@ export const rename = ({
     replaceExt = 'mjs',
     outDir = 'dist',
     srcDir = 'mjs'
-}) => {
+} = {}) => {
     mkdirp(outDir);
     const files = glob('**/*.' + findExt, { ignore: 'node_modules/**', cwd: srcDir });
     files.forEach(file => {
@@ -32,7 +32,7 @@ export const copy = ({
     outDir = '.',
     srcDir = 'dist',
     stripPath = ''
-}: CopyFn) => {
+}: CopyFn = {} as CopyFn) => {
     const regexp = new RegExp('^' + stripPath);
 
     mkdirp(outDir);
@@ -88,7 +88,7 @@ export const clean = ({
     srcDir = 'dist',
     stripPath = '',
     removeEmpty = true
-}: CleanFn) => {
+}: CleanFn = {} as CleanFn) => {
     const regexp = new RegExp('^' + stripPath);
 
     mkdirp(outDir);
@@ -126,7 +126,7 @@ export const ignore = ({
     outDir = '.',
     srcDir = 'dist',
     stripPath = ''
-}: IgnoreFn) => {
+}: IgnoreFn = {} as IgnoreFn) => {
     const regexp = new RegExp('^' + stripPath);
 
     if (typeof findExt === 'string') findExt = findExt.split(',').map(a => a.trim()).filter(Boolean)
@@ -166,7 +166,7 @@ interface UpdateIgnoreFn {
 export const updateIgnore = ({
     gitignoreFile = '.gitignore',
     ignoreStr = ''
-}: UpdateIgnoreFn) => {
+}: UpdateIgnoreFn = {} as UpdateIgnoreFn) => {
     let read = true;
     const cur = readFileSync(gitignoreFile, 'utf-8');
     const str = cur.split('\n').filter(line => line.trim() !== '').reduce((m, line) => {

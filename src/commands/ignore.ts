@@ -36,6 +36,11 @@ const questions = [
 ];
 export default async (argv) => {
 
+    // shortcut
+    if (argv.ignore) {
+        return ignore()
+    }
+
     let {
         findExt,
         srcDir,

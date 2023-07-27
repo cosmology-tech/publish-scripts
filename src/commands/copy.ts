@@ -30,6 +30,11 @@ const questions = [
 ];
 export default async (argv) => {
 
+    // shortcut
+    if (argv.copy) {
+        return copy()
+    }
+
     let {
         findExt,
         srcDir,

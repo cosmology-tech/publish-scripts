@@ -30,6 +30,11 @@ const questions = [
 ];
 export default async (argv) => {
 
+    // shortcut
+    if (argv.rename) {
+        return rename();
+    }
+
     let {
         findExt,
         replaceExt,
