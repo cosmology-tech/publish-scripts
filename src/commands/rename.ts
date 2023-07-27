@@ -16,12 +16,6 @@ const questions = [
         required: true,
     },
     {
-        name: 'rmDir',
-        message: 'rmDir',
-        type: 'confirm',
-        required: true,
-    },
-    {
         name: 'srcDir',
         message: 'srcDir',
         type: 'input',
@@ -38,7 +32,6 @@ export default async (argv) => {
     let {
         findExt,
         replaceExt,
-        rmDir,
         srcDir,
         outDir
     } = await prompt(questions, argv);
@@ -54,7 +47,6 @@ export default async (argv) => {
     rename({
         findExt,
         replaceExt,
-        rmDir,
         outDir,
         srcDir
     })
