@@ -4,8 +4,8 @@ import { join, dirname, format, parse } from 'path';
 import { copyFileSync } from 'fs';
 
 export const rename = ({
-    findExt = 'js',
-    replaceExt = 'mjs',
+    findExt,
+    replaceExt,
     outDir = join(process.cwd(), '__output__'),
     srcDir = process.cwd()
 }) => {
@@ -27,7 +27,7 @@ interface CopyFn {
     stripPath: string;
 }
 export const copy = ({
-    findExt = ['js'],
+    findExt = [],
     outDir = join(process.cwd(), '__output__'),
     srcDir = process.cwd(),
     stripPath = ''
