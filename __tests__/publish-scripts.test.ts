@@ -1,4 +1,4 @@
-import { rename, clean, copy, ignore } from '../src/index';
+import { rename, clean, copy, ignore, updateIgnore } from '../src/index';
 import { join, resolve } from 'path';
 import { globSync as glob } from 'glob';
 import { rimrafSync } from 'rimraf';
@@ -96,11 +96,16 @@ it('clean', async () => {
 it('ignore', async () => {
     const outDir = join(OUTDIR, 'ignore-test');
     const curDir = join(FIXTURES, 'ignore-test');
-    const a = ignore({
+    const ignoreStr = ignore({
         findExt: 'texta,textb,tx,ty',
         srcDir: curDir,
         outDir,
         stripPath: 'another/some/path'
     });
-    expect(a).toMatchSnapshot();
+    expect(ignoreStr).toMatchSnapshot();
+
+    updateIgnore({
+        gitignoreFile: join(curDir, 'myignorefile'),
+        ignoreStr
+    })
 });

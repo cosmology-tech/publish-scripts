@@ -84,11 +84,16 @@ exports[`copy stripPath bad 1`] = `
 `;
 
 exports[`ignore 1`] = `
-"/some
+"
+# publish-scripts
+# AUTOMATED DONT EDIT
+/some
 /g.textb
 /g.tx
 /g.ty
-"
+
+# END publish-scripts
+    "
 `;
 
 exports[`rename 1`] = `

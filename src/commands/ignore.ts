@@ -1,4 +1,4 @@
-import { ignore } from '..';
+import { ignore, updateIgnore } from '..';
 import { prompt } from '../utils';
 import { join } from 'path';
 
@@ -22,6 +22,12 @@ const questions = [
         default: '',
     },
     {
+        name: 'gitignoreFile',
+        message: 'gitignoreFile',
+        type: 'input',
+        default: '.gitignore',
+    },
+    {
         name: 'outDir',
         message: 'outDir',
         type: 'input',
@@ -33,7 +39,8 @@ export default async (argv) => {
         findExt,
         srcDir,
         stripPath,
-        outDir
+        outDir,
+        gitignoreFile
     } = await prompt(questions, argv);
 
     const cwd = process.cwd();
@@ -43,13 +50,22 @@ export default async (argv) => {
     if (!outDir.startsWith('/') || !outDir.startsWith(cwd)) {
         outDir = join(cwd, outDir);
     }
+    if (!gitignoreFile.startsWith('/') || !gitignoreFile.startsWith(cwd)) {
+        gitignoreFile = join(cwd, gitignoreFile);
+    }
 
-    ignore({
+    const ignoreStr = ignore({
         findExt,
         outDir,
         srcDir,
         stripPath
+    });
+
+    updateIgnore({
+        gitignoreFile,
+        ignoreStr
     })
+
 
 };
 

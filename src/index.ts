@@ -1,7 +1,7 @@
 import { globSync as glob } from 'glob';
 import { mkdirpSync as mkdirp } from 'mkdirp';
-import { extname, join, dirname, format, parse } from 'path';
-import { copyFileSync, readdirSync, rmdirSync, statSync } from 'fs';
+import { join, dirname, format, parse } from 'path';
+import { writeFileSync, readFileSync, copyFileSync, readdirSync, rmdirSync, statSync } from 'fs';
 import { rimrafSync } from 'rimraf';
 
 export const rename = ({
@@ -148,7 +148,40 @@ export const ignore = ({
         return m;
     }, {});
 
-    return Object.keys(del).reduce((m, v) => {
+    const ignoreStr = Object.keys(del).reduce((m, v) => {
         return `${m}/${v}\n`
     }, '');
+
+    return `
+# publish-scripts
+# AUTOMATED DONT EDIT
+${ignoreStr}
+# END publish-scripts
+    `
+};
+interface UpdateIgnoreFn {
+    gitignoreFile: string;
+    ignoreStr: string
+}
+export const updateIgnore = ({
+    gitignoreFile,
+    ignoreStr
+}: UpdateIgnoreFn) => {
+    let read = true;
+    const cur = readFileSync(gitignoreFile, 'utf-8');
+    const str = cur.split('\n').reduce((m, line) => {
+        if (line.match(/^\# publish-scripts/)) read = false;
+        if (line.match(/^\# END publish-scripts/)) {
+            read = true;
+            return m;
+        }
+        if (read) {
+            return [...m, line];
+        }
+        return m;
+    }, []).join('\n');
+    const finalStr = `${str}
+${ignoreStr}
+`;
+    writeFileSync(gitignoreFile, finalStr);
 };
