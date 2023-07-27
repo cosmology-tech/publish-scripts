@@ -1,6 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`works 1`] = `
+exports[`copy 1`] = `
+[
+  "some",
+  "some/path",
+  "some/path/g.ty",
+  "some/path/g.tx",
+  "some/path/g.textb",
+  "some/path/g.texta",
+  "some/path/b",
+  "some/path/a",
+  "some/path/b/c",
+  "some/path/b/c/d",
+  "some/path/b/c/d/e.textb",
+  "some/path/b/c/d/e.texta",
+  "some/path/a/d",
+  "some/path/a/d/e.textb",
+  "some/path/a/d/e.texta",
+]
+`;
+
+exports[`copy stripPath 1`] = `
+[
+  "g.ty",
+  "g.tx",
+  "g.textb",
+  "g.texta",
+  "b",
+  "a",
+  "b/c",
+  "b/c/d",
+  "b/c/d/e.textb",
+  "b/c/d/e.texta",
+  "a/d",
+  "a/d/e.textb",
+  "a/d/e.texta",
+]
+`;
+
+exports[`copy stripPath bad 1`] = `
+[
+  "some",
+  "some/path",
+  "some/path/g.ty",
+  "some/path/g.tx",
+  "some/path/g.textb",
+  "some/path/g.texta",
+  "some/path/b",
+  "some/path/a",
+  "some/path/b/c",
+  "some/path/b/c/d",
+  "some/path/b/c/d/e.textb",
+  "some/path/b/c/d/e.texta",
+  "some/path/a/d",
+  "some/path/a/d/e.textb",
+  "some/path/a/d/e.texta",
+]
+`;
+
+exports[`rename 1`] = `
 [
   "a",
   "a/g.textb",
