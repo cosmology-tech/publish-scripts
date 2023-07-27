@@ -30,22 +30,6 @@ const questions = [
 ];
 export default async (argv) => {
 
-    if (argv.rename) {
-        if (!argv.findExt) {
-            argv.findExt = 'js';
-        }
-        if (!argv.replaceExt) {
-            argv.replaceExt = 'mjs';
-        }
-        if (!argv.outDir) {
-            argv.outDir = 'dist';
-        }
-        if (!argv.srcDir) {
-            argv.srcDir = 'mjs';
-        }
-    }
-
-
     let {
         findExt,
         replaceExt,

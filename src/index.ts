@@ -5,10 +5,10 @@ import { writeFileSync, readFileSync, copyFileSync, readdirSync, rmdirSync, stat
 import { rimrafSync } from 'rimraf';
 
 export const rename = ({
-    findExt,
-    replaceExt,
-    outDir = join(process.cwd(), '__output__'),
-    srcDir = process.cwd()
+    findExt = 'js',
+    replaceExt = 'mjs',
+    outDir = 'dist',
+    srcDir = 'mjs'
 }) => {
     mkdirp(outDir);
     const files = glob('**/*.' + findExt, { ignore: 'node_modules/**', cwd: srcDir });
@@ -28,9 +28,9 @@ interface CopyFn {
     stripPath: string;
 }
 export const copy = ({
-    findExt = [],
-    outDir = join(process.cwd(), '__output__'),
-    srcDir = process.cwd(),
+    findExt = 'js,map,mjs,d.ts',
+    outDir = '.',
+    srcDir = 'dist',
     stripPath = ''
 }: CopyFn) => {
     const regexp = new RegExp('^' + stripPath);
@@ -83,9 +83,9 @@ const cleanEmptyFoldersRecursively = (folder) => {
 
 // deletes the files that would have otherwise been copied
 export const clean = ({
-    findExt = [],
-    outDir = join(process.cwd(), '__output__'),
-    srcDir = process.cwd(),
+    findExt = 'js,map,mjs,d.ts',
+    outDir = '.',
+    srcDir = 'dist',
     stripPath = '',
     removeEmpty = true
 }: CleanFn) => {
@@ -122,9 +122,9 @@ interface IgnoreFn {
 
 // log the files that would have otherwise been copied
 export const ignore = ({
-    findExt = [],
-    outDir = join(process.cwd(), '__output__'),
-    srcDir = process.cwd(),
+    findExt = 'js,map,mjs,d.ts',
+    outDir = '.',
+    srcDir = 'dist',
     stripPath = ''
 }: IgnoreFn) => {
     const regexp = new RegExp('^' + stripPath);
@@ -164,8 +164,8 @@ interface UpdateIgnoreFn {
     ignoreStr: string
 }
 export const updateIgnore = ({
-    gitignoreFile,
-    ignoreStr
+    gitignoreFile = '.gitignore',
+    ignoreStr = ''
 }: UpdateIgnoreFn) => {
     let read = true;
     const cur = readFileSync(gitignoreFile, 'utf-8');
