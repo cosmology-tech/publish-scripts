@@ -91,7 +91,7 @@ interface IgnoreFn {
     stripPath: string;
 }
 
-// deletes the files that would have otherwise been copied
+// log the files that would have otherwise been copied
 export const ignore = ({
     findExt = [],
     outDir = join(process.cwd(), '__output__'),
