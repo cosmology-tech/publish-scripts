@@ -169,7 +169,7 @@ export const updateIgnore = ({
 }: UpdateIgnoreFn) => {
     let read = true;
     const cur = readFileSync(gitignoreFile, 'utf-8');
-    const str = cur.split('\n').reduce((m, line) => {
+    const str = cur.split('\n').filter(line => line.trim() !== '').reduce((m, line) => {
         if (line.match(/^\# publish-scripts/)) read = false;
         if (line.match(/^\# END publish-scripts/)) {
             read = true;
@@ -179,6 +179,12 @@ export const updateIgnore = ({
             return [...m, line];
         }
         return m;
+    }, []).reduce((m, v) => {
+        if (v.startsWith('#')) {
+            // hacky way to add some vertical spacing
+            return [...m, '\n', v];
+        }
+        return [...m, v]
     }, []).join('\n');
     const finalStr = `${str}
 ${ignoreStr}
