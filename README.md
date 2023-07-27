@@ -5,8 +5,8 @@
 </p>
 
 <p align="center" width="100%">
-  <a href="https://github.com/cosmology-tech/publish-scripts/actions/workflows/run-tests.yaml">
-    <img height="20" src="https://github.com/cosmology-tech/publish-scripts/actions/workflows/run-tests.yaml/badge.svg" />
+  <a href="https://github.com/cosmology-tech/publish-scripts/actions/workflows/run-tests.yml">
+    <img height="20" src="https://github.com/cosmology-tech/publish-scripts/actions/workflows/run-tests.yml/badge.svg" />
   </a>
    <a href="https://github.com/cosmology-tech/publish-scripts/blob/main/LICENSE"><img height="20" src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
    <a href="https://www.npmjs.com/package/publish-scripts"><img height="20" src="https://img.shields.io/github/package-json/v/cosmology-tech/publish-scripts?filename=package.json"></a>
