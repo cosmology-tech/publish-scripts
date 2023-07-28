@@ -10,12 +10,7 @@ interface RenameFn {
     outDir: string;
     srcDir: string;
 }
-export const defaultRename: RenameFn = {
-    findExt: 'js',
-    replaceExt: 'mjs',
-    outDir: 'dist',
-    srcDir: 'mjs'
-};
+
 export const rename = ({
     findExt = 'js',
     replaceExt = 'mjs',
@@ -39,12 +34,7 @@ interface CopyFn {
     srcDir: string;
     stripPath: string;
 }
-export const defaultCopy: CopyFn = {
-    findExt: 'js,map,mjs,d.ts',
-    outDir: '.',
-    srcDir: 'dist',
-    stripPath: ''
-};
+
 export const copy = ({
     findExt = 'js,map,mjs,d.ts',
     outDir = '.',
@@ -98,14 +88,6 @@ const cleanEmptyFoldersRecursively = (folder) => {
     }
 }
 
-export const defaultClean: CleanFn = {
-    findExt: 'js,map,mjs,d.ts',
-    outDir: '.',
-    srcDir: 'dist',
-    stripPath: '',
-    removeEmpty: true
-};
-
 // deletes the files that would have otherwise been copied
 export const clean = ({
     findExt = 'js,map,mjs,d.ts',
@@ -144,13 +126,6 @@ interface IgnoreFn {
     srcDir: string;
     stripPath: string;
 }
-
-export const defaultIgnore: IgnoreFn = {
-    findExt: 'js,map,mjs,d.ts',
-    outDir: '.',
-    srcDir: 'dist',
-    stripPath: ''
-};
 
 // log the files that would have otherwise been copied
 export const ignore = ({
@@ -196,10 +171,6 @@ interface UpdateIgnoreFn {
     ignoreStr: string
 }
 
-export const defaultUpdateIgnore: UpdateIgnoreFn = {
-    gitignoreFile: '.gitignore',
-    ignoreStr: ''
-};
 export const updateIgnore = ({
     gitignoreFile = '.gitignore',
     ignoreStr = ''
