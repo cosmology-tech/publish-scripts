@@ -32,7 +32,7 @@ export default async (argv) => {
 
     // shortcut
     if (argv.copy) {
-        return copy()
+        return copy();
     }
 
     let {
