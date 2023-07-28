@@ -1,6 +1,6 @@
 {
   "name": "publish-scripts",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "npm publish scripts",
   "author": "Dan Lynch <pyramation@gmail.com>",
   "homepage": "https://github.com/cosmology-tech/publish-scripts#readme",
