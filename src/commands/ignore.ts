@@ -1,4 +1,4 @@
-import { defaultIgnore, ignore, updateIgnore } from '..';
+import { ignore, updateIgnore } from '..';
 import { prompt } from '../utils';
 import { join } from 'path';
 
@@ -35,11 +35,6 @@ const questions = [
     }
 ];
 export default async (argv) => {
-
-    // shortcut
-    if (argv.ignore) {
-        return ignore(defaultIgnore)
-    }
 
     let {
         findExt,

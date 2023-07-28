@@ -1,4 +1,4 @@
-import { copy, defaultCopy } from '..';
+import { copy } from '..';
 import { prompt } from '../utils';
 import { join } from 'path';
 
@@ -29,11 +29,6 @@ const questions = [
     }
 ];
 export default async (argv) => {
-
-    // shortcut
-    if (argv.copy) {
-        return copy(defaultCopy);
-    }
 
     let {
         findExt,

@@ -29,7 +29,11 @@
     "test:debug": "node --inspect node_modules/.bin/jest --runInBand"
   },
   "bin": {
-    "publish-scripts": "main/publish-scripts.js"
+    "publish-scripts": "main/publish-scripts.js",
+    "publish-scripts-clean": "main/cmd-clean.js",
+    "publish-scripts-copy": "main/cmd-copy.js",
+    "publish-scripts-ignore": "main/cmd-ignore.js",
+    "publish-scripts-rename": "main/cmd-rename.js"
   },
   "publishConfig": {
     "access": "public"

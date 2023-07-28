@@ -1,4 +1,4 @@
-import { defaultRename, rename } from '..';
+import { rename } from '..';
 import { prompt } from '../utils';
 import { join } from 'path';
 
@@ -29,11 +29,6 @@ const questions = [
     }
 ];
 export default async (argv) => {
-
-    // shortcut
-    if (argv.rename) {
-        return rename(defaultRename);
-    }
 
     let {
         findExt,

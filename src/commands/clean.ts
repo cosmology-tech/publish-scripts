@@ -1,4 +1,4 @@
-import { clean, defaultClean } from '..';
+import { clean } from '..';
 import { prompt } from '../utils';
 import { join } from 'path';
 
@@ -35,11 +35,6 @@ const questions = [
     }
 ];
 export default async (argv) => {
-
-    // shortcut
-    if (argv.clean) {
-        return clean(defaultClean);
-    }
 
     let {
         findExt,
