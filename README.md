@@ -23,11 +23,14 @@ yarn add --dev publish-scripts
 Now, update your `package.json`'s `scripts` property:
 
 ```json
-"build:cjs": "yarn tsc -p tsconfig.json --outDir dist --module commonjs",
-"build:mjs": "yarn tsc -p tsconfig.json --outDir mjs --module es2022 --declaration false",
-"build:rename": "publish-scripts --cmd rename --srcDir mjs --outDir dist --findExt js --replaceExt mjs",
-"build:copy": "publish-scripts --cmd copy --srcDir dist --outDir . --findExt js,map,mjs,d.ts --stripPath codegen",
-"build:clean": "publish-scripts --cmd clean --srcDir dist --outDir . --findExt js,map,mjs,d.ts --stripPath codegen --removeEmpty",
-"build:ignore": "publish-scripts --cmd ignore --srcDir dist --outDir . --findExt js,map,mjs,d.ts --stripPath codegen --gitignoreFile .gitignore",
-"build": "rimraf dist && yarn build:cjs && yarn build:mjs && yarn build:rename && rimraf mjs && yarn build:copy && yarn build:ignore",
+    "build:cjs": "yarn tsc -p tsconfig.json --outDir dist --module commonjs || true",
+    "build:mjs": "yarn tsc -p tsconfig.json --outDir mjs --module es2022 --declaration false || true",
+    "build:rename": "publish-scripts --cmd rename --srcDir mjs --outDir dist --findExt js --replaceExt mjs",
+    "build:copy": "publish-scripts --cmd copy --srcDir dist --outDir . --findExt js,map,mjs,d.ts --stripPath codegen",
+    "build:clean": "publish-scripts --cmd clean --srcDir dist --outDir . --findExt js,map,mjs,d.ts --stripPath codegen --removeEmpty",
+    "build:ignore": "publish-scripts --cmd ignore --srcDir dist --outDir . --findExt js,map,mjs,d.ts --stripPath codegen --gitignoreFile .gitignore",
+    "build": "npm run clean && npm run build:cjs && npm run build:mjs && npm run build:rename && rimraf mjs && npm run build:copy && npm run build:ignore",
+    "clean:mjs": "rimraf mjs",
+    "clean:dist": "rimraf dist",
+    "clean": "npm run build:clean && npm run clean:mjs && npm run clean:dist",
 ```
