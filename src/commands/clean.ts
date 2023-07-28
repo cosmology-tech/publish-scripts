@@ -1,4 +1,4 @@
-import { clean } from '..';
+import { clean, defaultClean } from '..';
 import { prompt } from '../utils';
 import { join } from 'path';
 
@@ -38,7 +38,7 @@ export default async (argv) => {
 
     // shortcut
     if (argv.clean) {
-        return clean();
+        return clean(defaultClean);
     }
 
     let {

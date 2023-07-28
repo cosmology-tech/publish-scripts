@@ -1,4 +1,4 @@
-import { rename } from '..';
+import { defaultRename, rename } from '..';
 import { prompt } from '../utils';
 import { join } from 'path';
 
@@ -32,7 +32,7 @@ export default async (argv) => {
 
     // shortcut
     if (argv.rename) {
-        return rename();
+        return rename(defaultRename);
     }
 
     let {

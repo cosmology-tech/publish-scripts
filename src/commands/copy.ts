@@ -1,4 +1,4 @@
-import { copy } from '..';
+import { copy, defaultCopy } from '..';
 import { prompt } from '../utils';
 import { join } from 'path';
 
@@ -32,7 +32,7 @@ export default async (argv) => {
 
     // shortcut
     if (argv.copy) {
-        return copy();
+        return copy(defaultCopy);
     }
 
     let {

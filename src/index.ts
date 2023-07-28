@@ -10,7 +10,7 @@ interface RenameFn {
     outDir: string;
     srcDir: string;
 }
-const defaultRename: RenameFn = {
+export const defaultRename: RenameFn = {
     findExt: 'js',
     replaceExt: 'mjs',
     outDir: 'dist',
@@ -21,7 +21,7 @@ export const rename = ({
     replaceExt = 'mjs',
     outDir = 'dist',
     srcDir = 'mjs'
-}: RenameFn = defaultRename) => {
+}: RenameFn) => {
     mkdirp(outDir);
     const files = glob('**/*.' + findExt, { ignore: 'node_modules/**', cwd: srcDir });
     files.forEach(file => {
@@ -39,7 +39,7 @@ interface CopyFn {
     srcDir: string;
     stripPath: string;
 }
-const defaultCopy: CopyFn = {
+export const defaultCopy: CopyFn = {
     findExt: 'js,map,mjs,d.ts',
     outDir: '.',
     srcDir: 'dist',
@@ -50,7 +50,7 @@ export const copy = ({
     outDir = '.',
     srcDir = 'dist',
     stripPath = ''
-}: CopyFn = defaultCopy) => {
+}: CopyFn) => {
     const regexp = new RegExp('^' + stripPath);
 
     mkdirp(outDir);
@@ -98,7 +98,7 @@ const cleanEmptyFoldersRecursively = (folder) => {
     }
 }
 
-const defaultClean: CleanFn = {
+export const defaultClean: CleanFn = {
     findExt: 'js,map,mjs,d.ts',
     outDir: '.',
     srcDir: 'dist',
@@ -113,7 +113,7 @@ export const clean = ({
     srcDir = 'dist',
     stripPath = '',
     removeEmpty = true
-}: CleanFn = defaultClean) => {
+}: CleanFn) => {
     const regexp = new RegExp('^' + stripPath);
 
     mkdirp(outDir);
@@ -145,7 +145,7 @@ interface IgnoreFn {
     stripPath: string;
 }
 
-const defaultIgnore: IgnoreFn = {
+export const defaultIgnore: IgnoreFn = {
     findExt: 'js,map,mjs,d.ts',
     outDir: '.',
     srcDir: 'dist',
@@ -158,7 +158,7 @@ export const ignore = ({
     outDir = '.',
     srcDir = 'dist',
     stripPath = ''
-}: IgnoreFn = defaultIgnore) => {
+}: IgnoreFn) => {
     const regexp = new RegExp('^' + stripPath);
 
     if (typeof findExt === 'string') findExt = findExt.split(',').map(a => a.trim()).filter(Boolean)
@@ -195,14 +195,15 @@ interface UpdateIgnoreFn {
     gitignoreFile: string;
     ignoreStr: string
 }
-const defaultUpdateIgnore: UpdateIgnoreFn = {
+
+export const defaultUpdateIgnore: UpdateIgnoreFn = {
     gitignoreFile: '.gitignore',
     ignoreStr: ''
 };
 export const updateIgnore = ({
     gitignoreFile = '.gitignore',
     ignoreStr = ''
-}: UpdateIgnoreFn = defaultUpdateIgnore) => {
+}: UpdateIgnoreFn) => {
     let read = true;
     const cur = readFileSync(gitignoreFile, 'utf-8');
     const str = cur.split('\n').filter(line => line.trim() !== '').reduce((m, line) => {
